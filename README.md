@@ -18,7 +18,7 @@ Zicchini é nossa ferramente de automação de testes baseada em [Cucumber](http
 ```
 
 
-```
+```cucumber
 # language: en
 Feature: Setup Tests
   Sets up the required connections
