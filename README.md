@@ -4,6 +4,8 @@
 
 Zicchini é nossa ferramente de automação de testes baseada em [Cucumber](https://cucumber.io/) com diversos steps predefinidos.
 
+[Lista completa com os Steps predefinidos](Steps.md)
+
 
 ```xml
 <dependency>
