@@ -1,8 +1,8 @@
 # Zicchini
 
-![zucchini](https://freshproducegroup.us/wp-content/uploads/2016/08/Zucchini-Fresh-Produce-US.jpg)
+![zucchini](https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/CSA-Striped-Zucchini.jpg/250px-CSA-Striped-Zucchini.jpg)
 
-Zicchini é nossa ferramente com steps predefinidos ṕara testes automatizados baseados em [Cucumber](https://cucumber.io/).
+Zicchini é nossa ferramente de automação de testes baseada em [Cucumber](https://cucumber.io/) com diversos steps predefinidos.
 
 
 ```xml
