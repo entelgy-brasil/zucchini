@@ -1,5 +1,7 @@
 # Steps
 
+List of all predefined steps
+
 ## Liferay Steps
 
 * Given user "{email}" is logged in liferay
