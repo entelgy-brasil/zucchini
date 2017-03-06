@@ -1,5 +1,7 @@
 package br.com.entelgy.selenium;
 
+import io.github.bonigarcia.wdm.ChromeDriverManager;
+import io.github.bonigarcia.wdm.PhantomJsDriverManager;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -23,10 +25,12 @@ public class SeleniumDriver {
 	private static final long TIMEOUT = 20;
 	private static final long TIMEOUT_PAGE_LOAD = 60;
 
+	@Deprecated
 	public static WebDriver getInstance() {
 		return getInstance(DriverEnum.CHROME);
 	}
 
+	@Deprecated
 	public static WebDriver getInstance(DriverEnum driverEnum) {
 
 		if (driver == null) {
@@ -45,6 +49,36 @@ public class SeleniumDriver {
 			default:
 				driver = createPhantomJSDriver();
 				break;
+			}
+
+			driver.manage().timeouts().implicitlyWait(TIMEOUT, TimeUnit.SECONDS);
+			driver.manage().timeouts().pageLoadTimeout(TIMEOUT_PAGE_LOAD, TimeUnit.SECONDS);
+			driver.manage().window().setSize(new Dimension(1200, 800));
+		}
+
+		return driver;
+	}
+
+	public static WebDriver getDriver(DriverEnum driverEnum) {
+
+		if (driver == null) {
+
+			switch (driverEnum) {
+
+				case CHROME:
+					ChromeDriverManager.getInstance().setup();
+					driver = new ChromeDriver();
+					break;
+
+				case FIREFOX:
+					driver = new FirefoxDriver();
+					break;
+
+				case PHANTOMJS:
+				default:
+					PhantomJsDriverManager.getInstance().setup();
+					driver = new PhantomJSDriver();
+					break;
 			}
 
 			driver.manage().timeouts().implicitlyWait(TIMEOUT, TimeUnit.SECONDS);
