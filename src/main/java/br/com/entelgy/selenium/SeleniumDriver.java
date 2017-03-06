@@ -18,27 +18,29 @@ import java.util.concurrent.TimeUnit;
 public class SeleniumDriver {
 
 	private static WebDriver driver;
-
-	private static final String CHROME_DRIVER = "/home/andre/Downloads/chromedriver";
-	private static final String PHANTOMJS_DRIVER = "/home/andre/Downloads/phantomjs";
-
 	private static final long TIMEOUT = 20;
 	private static final long TIMEOUT_PAGE_LOAD = 60;
 
 	@Deprecated
 	public static WebDriver getInstance() {
-		return getInstance(DriverEnum.CHROME);
+		return getInstance(DriverEnum.FIREFOX, null);
 	}
 
+	/**
+	 * Use getDriver(DriverEnum driverEnum) for automatically resolves binary driver path
+	 * @param driverEnum
+	 * @param driverPath
+	 * @return
+	 */
 	@Deprecated
-	public static WebDriver getInstance(DriverEnum driverEnum) {
+	public static WebDriver getInstance(DriverEnum driverEnum, String driverPath) {
 
 		if (driver == null) {
 
 			switch (driverEnum) {
 
 			case CHROME:
-				driver = createChromeDriver();
+				driver = createChromeDriver(driverPath);
 				break;
 
 			case FIREFOX:
@@ -47,7 +49,7 @@ public class SeleniumDriver {
 
 			case PHANTOMJS:
 			default:
-				driver = createPhantomJSDriver();
+				driver = createPhantomJSDriver(driverPath);
 				break;
 			}
 
@@ -59,6 +61,12 @@ public class SeleniumDriver {
 		return driver;
 	}
 
+	/**
+	 * Automatically resolves binary driver path with WebDriverManager
+	 * @see [https://github.com/bonigarcia/webdrivermanager]
+	 * @param driverEnum
+	 * @return
+	 */
 	public static WebDriver getDriver(DriverEnum driverEnum) {
 
 		if (driver == null) {
@@ -90,8 +98,8 @@ public class SeleniumDriver {
 	}
 
 
-	private static WebDriver createChromeDriver() {
-		System.setProperty("webdriver.chrome.driver", CHROME_DRIVER);
+	private static WebDriver createChromeDriver(String driverPath) {
+		System.setProperty("webdriver.chrome.driver", driverPath);
 		return new ChromeDriver();
 	}
 
@@ -107,10 +115,10 @@ public class SeleniumDriver {
 		return new FirefoxDriver(desiredCapabilities);
 	}
 
-	private static WebDriver createPhantomJSDriver() {
+	private static WebDriver createPhantomJSDriver(String driverPath) {
 
 		DesiredCapabilities desiredCapabilities = DesiredCapabilities.phantomjs();
-		desiredCapabilities.setCapability(PhantomJSDriverService.PHANTOMJS_EXECUTABLE_PATH_PROPERTY, PHANTOMJS_DRIVER);
+		desiredCapabilities.setCapability(PhantomJSDriverService.PHANTOMJS_EXECUTABLE_PATH_PROPERTY, driverPath);
 		desiredCapabilities.setCapability(CapabilityType.ELEMENT_SCROLL_BEHAVIOR, true);
 		desiredCapabilities.setCapability(CapabilityType.TAKES_SCREENSHOT, true);
 		desiredCapabilities.setCapability(CapabilityType.ENABLE_PROFILING_CAPABILITY, true);
