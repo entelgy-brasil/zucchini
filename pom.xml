@@ -22,6 +22,19 @@
 		</repository>
 	</repositories>
 
+	<distributionManagement>
+		<repository>
+			<id>nexus</id>
+			<name>Repositorio de Releases</name>
+			<url>http://192.168.0.59/content/repositories/entelgy-releases/</url>
+		</repository>
+		<snapshotRepository>
+			<id>nexus</id>
+			<name>Repositorios de Snapshots</name>
+			<url>http://192.168.0.59/content/repositories/entelgy-snapshots/</url>
+		</snapshotRepository>
+	</distributionManagement>
+
 	<properties>
 		<java.version>1.7</java.version>
 		<scm.username>automacao</scm.username>
