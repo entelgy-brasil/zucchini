@@ -15,12 +15,23 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * <p>SeleniumDriver class.</p>
+ *
+ * @author andre
+ * @version $Id: $Id
+ */
 public class SeleniumDriver {
 
 	private static WebDriver driver;
 	private static final long TIMEOUT = 20;
 	private static final long TIMEOUT_PAGE_LOAD = 60;
 
+	/**
+	 * <p>getInstance.</p>
+	 *
+	 * @return a {@link org.openqa.selenium.WebDriver} object.
+	 */
 	@Deprecated
 	public static WebDriver getInstance() {
 		return getInstance(DriverEnum.FIREFOX, null);
@@ -28,9 +39,10 @@ public class SeleniumDriver {
 
 	/**
 	 * Use getDriver(DriverEnum driverEnum) for automatically resolves binary driver path
-	 * @param driverEnum
-	 * @param driverPath
-	 * @return
+	 *
+	 * @param driverEnum a {@link br.com.entelgy.selenium.DriverEnum} object.
+	 * @param driverPath a {@link java.lang.String} object.
+	 * @return a {@link org.openqa.selenium.WebDriver} object.
 	 */
 	@Deprecated
 	public static WebDriver getInstance(DriverEnum driverEnum, String driverPath) {
@@ -63,9 +75,10 @@ public class SeleniumDriver {
 
 	/**
 	 * Automatically resolves binary driver path with WebDriverManager
-	 * @see [https://github.com/bonigarcia/webdrivermanager]
-	 * @param driverEnum
-	 * @return
+	 *
+	 * @see <a href="https://github.com/bonigarcia/webdrivermanager">https://github.com/bonigarcia/webdrivermanager</a>
+	 * @param driverEnum a {@link br.com.entelgy.selenium.DriverEnum} object.
+	 * @return a {@link org.openqa.selenium.WebDriver} object.
 	 */
 	public static WebDriver getDriver(DriverEnum driverEnum) {
 
