@@ -9,6 +9,8 @@ List of all predefined steps
 * Then go to control panel
 * Then go to "{uri}"
 * Then logout in liferay
+* Then I navigate to preferences of portlet "{[contains(@id)}"
+* Then I come back to portlet
 
 ## Navigation Steps
 
@@ -20,6 +22,7 @@ List of all predefined steps
 * Then I maximize browser window
 * Then I scroll to element having (id|name|class|xpath|css) "{element}"
 * Then I hover over element having (id|name|class|xpath|css) "{element}"
+* Then I scroll up
 
 ## Click Steps
 
@@ -77,3 +80,6 @@ List of all predefined steps
 * Then I select "{value}" value on element having (id|name|class|xpath|css) "{element}"
 * Then I select "{text}" text on element having (id|name|class|xpath|css) "{element}"
     
+## Wait Steps
+
+* Then I wait "{number}" seconds an element having (id|name|class|xpath|css) "{element}" to be clickable
