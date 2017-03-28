@@ -12,7 +12,7 @@ Zucchini (zo͞oˈkēnē), a.k.a Abobrinha, é nossa ferramente de automação de
 <dependency>
     <groupId>br.com.entelgy</groupId>
     <artifactId>zucchini</artifactId>
-    <version>1.0.0</version>
+    <version>1.1.0</version>
     <scope>test</scope>
 </dependency>
 
@@ -38,14 +38,16 @@ Vejemos abaixo alguns itens necessários:
 )
 public class ZucchiniFeaturesRunner {
 
+    private static WebDriver driver;
+
 	@BeforeClass
 	public static void setup() {
-		SeleniumDriver.getDriver(DriverEnum.CHROME);
+		driver = SeleniumDriver.getDriver(DriverEnum.CHROME);
 	}
 
 	@AfterClass
 	public static void cleanup() {
-		SeleniumDriver.getDriver(DriverEnum.CHROME).quit();
+		driver.quit();
 	}
 }
 ```
@@ -71,6 +73,12 @@ Drivers disponíveis ate o momento:
 + SeleniumDriver.getDriver(DriverEnum.FIREFOX);
 + SeleniumDriver.getDriver(DriverEnum.PHANTOMJS);
 
+Pode ocorrer de seu navegador não estar comparivem com a versão do webDriver, por isso, pode ser necessário informar o caminho seguindo o padrão:
+
+```java
+driver = SeleniumDriver.getInstance(DriverEnum.CHROME, "/path/to/your/chromedriver");
+```
+
 Como o Cucumber não garante a ordem de execução dos testes, siga a seguinte convenção:
 
 ![Convenção](image1.png)
@@ -87,4 +95,23 @@ Feature: Setup
   @setup
   Scenario: Setup
     Given setup url "http://localhost:8080/"
+```
+
+### Exemplo
+
+```cucumber
+#language: en
+@it @manual
+Feature: Create Report
+  First, we need to create a new Template and choose it on Portlet Preferences.
+  
+Scenario: Create a new report without clauses
+  Given user "test@liferay.com" is logged in liferay
+    Then I navigate to "web/guest/home"
+	Then element having id "filter-report-name" should be present
+    When I click on link having text "New"
+    Then I enter "New Report" into input field having xpath "//*[contains(@id, '_report-name')]"
+    When I click on element having id "report-save"
+    Then element having class "notification--success" should have text as "Report successfully saved"
+	Then logout in liferay
 ```
