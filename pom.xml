@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>br.com.entelgy</groupId>
 	<artifactId>zucchini</artifactId>
-	<version>1.0.1-SNAPSHOT</version>
+	<version>1.1.0</version>
 	<packaging>jar</packaging>
 	<name>Entelgy Integration Testing Tool</name>
 
@@ -11,7 +11,7 @@
 		<url>https://git.entelgy.com.br/entelgy/zucchini.git</url>
 		<connection>scm:git:https://git.entelgy.com.br/entelgy/zucchini.git</connection>
 		<developerConnection>scm:git:https://git.entelgy.com.br/entelgy/zucchini.git</developerConnection>
-		<tag>HEAD</tag>
+		<tag>1.1.0</tag>
 	</scm>
 
 	<repositories>
