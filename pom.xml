@@ -5,12 +5,31 @@
 	<artifactId>zucchini</artifactId>
 	<version>1.1.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
-	<name>Entelgy Integration Testing Tool</name>
+	<name>Zucchini</name>
+    <description>
+        Entelgy Integration Testing Tool
+    </description>
+
+    <url>https://github.com/entelgy-brasil/zucchini</url>
+
+    <developers>
+        <developer>
+            <id>andrelugomes</id>
+            <name>André Luis Gomes</name>
+            <email>andre.gomes@entelgy.com</email>
+        </developer>
+
+        <developer>
+            <id>mateusconstanzo</id>
+            <name>Mateus Constanzo</name>
+            <email>mateus.constanzo@entelgy.com</email>
+        </developer>
+    </developers>
 
 	<scm>
-		<url>https://github.com/entelgy-brasil/zucchini.git</url>
-		<connection>scm:git:https://github.com/entelgy-brasil/zucchini.git</connection>
-		<developerConnection>scm:git:https://github.com/entelgy-brasil/zucchini.git</developerConnection>
+		<url>git@github.com:entelgy-brasil/zucchini.git</url>
+		<connection>scm:git:git@github.com:entelgy-brasil/zucchini.git</connection>
+		<developerConnection>scm:git:git@github.com:entelgy-brasil/zucchini.git</developerConnection>
 		<tag>HEAD</tag>
 	</scm>
 
@@ -137,10 +156,13 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-gpg-plugin</artifactId>
                 <version>1.5</version>
+                <configuration>
+                    <passphrase>${gpg.passphrase}</passphrase>
+                </configuration>
                 <executions>
                     <execution>
                         <id>sign-artifacts</id>
-                        <phase>verify</phase>
+                        <phase>deploy</phase>
                         <goals>
                             <goal>sign</goal>
                         </goals>
