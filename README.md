@@ -108,10 +108,10 @@ Feature: Create Report
 Scenario: Create a new report without clauses
   Given user "test@liferay.com" is logged in liferay
     Then I navigate to "web/guest/home"
-	Then element having id "filter-report-name" should be present
+    Then element having id "filter-report-name" should be present
     When I click on link having text "New"
     Then I enter "New Report" into input field having xpath "//*[contains(@id, '_report-name')]"
     When I click on element having id "report-save"
     Then element having class "notification--success" should have text as "Report successfully saved"
-	Then logout in liferay
+    Then logout in liferay
 ```
