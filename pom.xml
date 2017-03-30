@@ -42,8 +42,6 @@
 
 	<properties>
 		<java.version>1.7</java.version>
-		<scm.username>automacao</scm.username>
-		<scm.password>Entelgy@2013</scm.password>
 		<junit.version>4.11</junit.version>
 		<org.slf4j-version>1.7.10</org.slf4j-version>
 		<selenium.version>2.39.0</selenium.version>
