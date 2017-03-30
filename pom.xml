@@ -3,14 +3,33 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>br.com.entelgy</groupId>
 	<artifactId>zucchini</artifactId>
-	<version>1.1.1-SNAPSHOT</version>
+	<version>1.1.2-SNAPSHOT</version>
 	<packaging>jar</packaging>
-	<name>Entelgy Integration Testing Tool</name>
+	<name>Zucchini</name>
+    <description>
+        Entelgy Integration Testing Tool
+    </description>
+
+    <url>https://github.com/entelgy-brasil/zucchini</url>
+
+    <developers>
+        <developer>
+            <id>andrelugomes</id>
+            <name>André Luis Gomes</name>
+            <email>andre.gomes@entelgy.com</email>
+        </developer>
+
+        <developer>
+            <id>mateusconstanzo</id>
+            <name>Mateus Constanzo</name>
+            <email>mateus.constanzo@entelgy.com</email>
+        </developer>
+    </developers>
 
 	<scm>
-		<url>https://github.com/entelgy-brasil/zucchini.git</url>
-		<connection>scm:git:https://github.com/entelgy-brasil/zucchini.git</connection>
-		<developerConnection>scm:git:https://github.com/entelgy-brasil/zucchini.git</developerConnection>
+		<url>git@github.com:entelgy-brasil/zucchini.git</url>
+		<connection>scm:git:git@github.com:entelgy-brasil/zucchini.git</connection>
+		<developerConnection>scm:git:git@github.com:entelgy-brasil/zucchini.git</developerConnection>
 		<tag>HEAD</tag>
 	</scm>
 
@@ -43,11 +62,14 @@
 	<properties>
 		<java.version>1.7</java.version>
 		<junit.version>4.11</junit.version>
-		<org.slf4j-version>1.7.10</org.slf4j-version>
+		<slf4j-api.version>1.7.10</slf4j-api.version>
 		<selenium.version>2.39.0</selenium.version>
 		<cucumber.version>1.1.5</cucumber.version>
 		<phantomj.version>1.1.0</phantomj.version>
 		<webdrivermanager.version>1.6.0</webdrivermanager.version>
+        <maven-gpg-plugin.version></maven-gpg-plugin.version>
+        <maven-compiler-plugin.version>3.5.1</maven-compiler-plugin.version>
+        <maven-source-plugin.version>2.2.1</maven-source-plugin.version>
 	</properties>
 
 	<dependencies>
@@ -84,7 +106,7 @@
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
-			<version>${org.slf4j-version}</version>
+			<version>${slf4j-api.version}</version>
 		</dependency>
 
 		<dependency>
@@ -97,13 +119,41 @@
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.5.1</version>
+				<version>${maven-compiler-plugin.version}</version>
 				<configuration>
 					<encoding>UTF-8</encoding>
 					<source>${java.version}</source>
 					<target>${java.version}</target>
 				</configuration>
 			</plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>2.2.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>2.9.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
 
 			<plugin>
 				<artifactId>maven-resources-plugin</artifactId>
@@ -131,20 +181,40 @@
 				</configuration>
 			</plugin>
 
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-gpg-plugin</artifactId>
-                <version>1.5</version>
-                <executions>
-                    <execution>
-                        <id>sign-artifacts</id>
-                        <phase>verify</phase>
-                        <goals>
-                            <goal>sign</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
 		</plugins>
 	</build>
+
+    <profiles>
+        <profile>
+            <id>release-sign-artifacts</id>
+            <activation>
+                <property>
+                    <name>performRelease</name>
+                    <value>true</value>
+                </property>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version>1.5</version>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                                <configuration>
+                                    <homedir>${gpg.homedir}</homedir>
+                                    <passphrase>${gpg.passphrase}</passphrase>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>
