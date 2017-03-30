@@ -1,5 +1,7 @@
 # Steps
 
+[<< back](README.md)
+
 List of all predefined steps
 
 ## Navigation Steps
@@ -72,3 +74,6 @@ List of all predefined steps
 ## Wait Steps
 
 * Then I wait "{number}" seconds an element having (id&#124;name&#124;class&#124;xpath&#124;css) "{element}" to be clickable
+
+
+[<< back](README.md)

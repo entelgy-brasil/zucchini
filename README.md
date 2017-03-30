@@ -2,7 +2,7 @@
 
 <img style="float: center;" src="images/zucchini.jpg">
 
-Zucchini (zo͞oˈkēnē), a.k.a Abobrinha, a testing tool based on [Cucumber](https://cucumber.io/) with many pre defined steps.
+Zucchini (zo͞oˈkēnē), a.k.a Abobrinha, is a testing tool based on [Cucumber](https://cucumber.io/) with many predefined steps.
 
 ## Usage
 
@@ -77,7 +77,7 @@ Feature: Setup
 
 ## Steps
 
-This section contain a list with all pre defined steps.
+This section contains a list with all predefined steps.
 
 [Full List](STEPS.md)
 
@@ -104,9 +104,9 @@ Scenario: Create a new report without clauses
 ## Troubleshooting
 
 We use WebDriverManager from [Boni Garcia](https://github.com/bonigarcia/webdrivermanager), that makes webdrivers binaries up to date, but, sometimes
-you Web Browser don't follow updates.
+your Web Browser don't follow updates.
 
-Then, you have to use an especific webdriver like below:
+Then, you have to use a specific webdriver like below:
 
 ```java
 driver = SeleniumDriver.getInstance(DriverEnum.CHROME, "/path/to/your/chromedriver");
