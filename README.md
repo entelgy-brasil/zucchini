@@ -12,7 +12,7 @@ Zucchini (zo͞oˈkēnē), a.k.a Abobrinha, é nossa ferramente de automação de
 <dependency>
     <groupId>br.com.entelgy</groupId>
     <artifactId>zucchini</artifactId>
-    <version>1.1.0</version>
+    <version>1.1.1</version>
     <scope>test</scope>
 </dependency>
 
