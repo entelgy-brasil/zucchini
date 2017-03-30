@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>br.com.entelgy</groupId>
 	<artifactId>zucchini</artifactId>
-	<version>1.1.1</version>
+	<version>1.1.2-SNAPSHOT</version>
 	<packaging>jar</packaging>
 	<name>Zucchini</name>
     <description>
@@ -30,7 +30,7 @@
 		<url>git@github.com:entelgy-brasil/zucchini.git</url>
 		<connection>scm:git:git@github.com:entelgy-brasil/zucchini.git</connection>
 		<developerConnection>scm:git:git@github.com:entelgy-brasil/zucchini.git</developerConnection>
-		<tag>1.1.1</tag>
+		<tag>HEAD</tag>
 	</scm>
 
 	<licenses>
