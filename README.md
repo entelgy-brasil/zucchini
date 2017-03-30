@@ -1,12 +1,10 @@
 # Zucchini
 
-![zucchini](https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/CSA-Striped-Zucchini.jpg/250px-CSA-Striped-Zucchini.jpg)
+<img style="float: center;" src="images/zucchini.jpg">
 
-Zucchini (zo͞oˈkēnē), a.k.a Abobrinha, é nossa ferramente de automação de testes baseada em [Cucumber](https://cucumber.io/) com diversos steps predefinidos.
+Zucchini (zo͞oˈkēnē), a.k.a Abobrinha, a testing tool based on [Cucumber](https://cucumber.io/) with many pre defined steps.
 
-[Lista completa com os Steps predefinidos](Steps.md)
-
-## Instalação
+## Usage
 
 ```xml
 <dependency>
@@ -18,11 +16,7 @@ Zucchini (zo͞oˈkēnē), a.k.a Abobrinha, é nossa ferramente de automação de
 
 ```
 
-## Configuração
-
-Os testes com Zucchini devem seguir padrões dos testes com Cucumber.
-
-Vejemos abaixo alguns itens necessários:
+## Setup
 
 ```java
 @RunWith(Cucumber.class)
@@ -33,7 +27,7 @@ Vejemos abaixo alguns itens necessários:
 	},
 	monochrome = false,
 	features = { "src/test/resources/features/" },
-	glue = { "br.com.entelgy" },
+	glue = { "your.awesome.package" },
 	tags = { "@setup,@it" }
 )
 public class ZucchiniFeaturesRunner {
@@ -52,41 +46,25 @@ public class ZucchiniFeaturesRunner {
 }
 ```
 
-- A classe `ZucchiniFeaturesRunner` faz as configurações e execução de todos os cenários de testes.
+Suported Drivers:
 
-- `@RunWith(Cucumber.class)` informa que os testes seram baseados no Framework Cucumber como executador.
-
-- `@CucumberOptions` informa o diretório onde estaram os arquivos `.fearure` contendo os cenários de 
-testes e as `tags` que iram ser executadas na bateria de testes. 
-
-- Anote todos as `.features` com `@it`
-
-- Anote o arquivo `Setup.feature` com `@setup`
-
-- `@BeforeClass` e `@AfterClass` faram o controle de abertura e fechamento do WebDriver.
-
-- `SeleniumDriver.getDriver(DriverEnum.CHROME);` inicializa o driver com o Google Chrome.
-
-Drivers disponíveis ate o momento:
-
-+ SeleniumDriver.getDriver(DriverEnum.CHROME)
++ SeleniumDriver.getDriver(DriverEnum.CHROME);
 + SeleniumDriver.getDriver(DriverEnum.FIREFOX);
 + SeleniumDriver.getDriver(DriverEnum.PHANTOMJS);
 
-Pode ocorrer de seu navegador não estar comparivem com a versão do webDriver, por isso, pode ser necessário informar o caminho seguindo o padrão:
+## Conventions
 
-```java
-driver = SeleniumDriver.getInstance(DriverEnum.CHROME, "/path/to/your/chromedriver");
-```
+Sorting your `features` using directory hierarchy.
 
-Como o Cucumber não garante a ordem de execução dos testes, siga a seguinte convenção:
+![Convention](images/convention.png)
 
-![Convenção](image1.png)
+- Tag all `.features` with `@it`
 
+- Tag `Setup.feature` file with `@setup`
 
 ### Setup.feature
 
-Esta feature irá definir o acesso inicial dos testes, fazendo com que os demais testes não precisem acessar novamente.
+This `feature` set up the base URL for all scenarios.
 
 ```cucumber
 # language: en
@@ -97,11 +75,18 @@ Feature: Setup
     Given setup url "http://localhost:8080/"
 ```
 
-### Exemplo
+## Steps
+
+This section contain a list with all pre defined steps.
+
+[Full List](STEPS.md)
+
+## Examples
 
 ```cucumber
 #language: en
-@it @manual
+
+@it 
 Feature: Create Report
   First, we need to create a new Template and choose it on Portlet Preferences.
   
@@ -114,4 +99,15 @@ Scenario: Create a new report without clauses
     When I click on element having id "report-save"
     Then element having class "notification--success" should have text as "Report successfully saved"
     Then logout in liferay
+```
+
+## Troubleshooting
+
+We use WebDriverManager from [Boni Garcia](https://github.com/bonigarcia/webdrivermanager), that makes webdrivers binaries up to date, but, sometimes
+you Web Browser don't follow updates.
+
+Then, you have to use an especific webdriver like below:
+
+```java
+driver = SeleniumDriver.getInstance(DriverEnum.CHROME, "/path/to/your/chromedriver");
 ```
