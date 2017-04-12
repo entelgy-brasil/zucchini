@@ -32,11 +32,12 @@ Zucchini (zo͞oˈkēnē), a.k.a Abobrinha, is a testing tool based on [Cucumber]
 )
 public class ZucchiniFeaturesRunner {
 
-    private static WebDriver driver;
+	private static WebDriver driver;
 
 	@BeforeClass
 	public static void setup() {
-		driver = SeleniumDriver.getDriver(DriverEnum.CHROME);
+		driver = SeleniumDriver.getDriver(DriverEnum.CHROME); //Setup Browser
+		GenericDriver.getApplicationContext().setServerUrl("http://localhost:8080/"); //Setup base url
 	}
 
 	@AfterClass
@@ -62,7 +63,7 @@ Sorting your `features` using directory hierarchy.
 
 - Tag `Setup.feature` file with `@setup`
 
-### Setup.feature
+### Sanple Setup.feature
 
 This `feature` set up the base URL for all scenarios.
 
