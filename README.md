@@ -63,17 +63,12 @@ Sorting your `features` using directory hierarchy.
 
 - Tag `Setup.feature` file with `@setup`
 
-### Sanple Setup.feature
+### Base URL
 
-This `feature` set up the base URL for all scenarios.
+To set up the base URL for all scenarios, we recomend that use `GenericDriver` on `@BeforeClass` like below.
 
-```cucumber
-# language: en
-Feature: Setup
-    
-  @setup
-  Scenario: Setup
-    Given setup url "http://localhost:8080/"
+```java
+GenericDriver.getApplicationContext().setServerUrl("http://localhost:8080/")
 ```
 
 ## Steps
