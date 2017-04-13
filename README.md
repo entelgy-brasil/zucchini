@@ -65,10 +65,19 @@ Sorting your `features` using directory hierarchy.
 
 ### Base URL
 
-To set up the base URL for all scenarios, we recomend that use `GenericDriver` on `@BeforeClass` like below.
+If you want to set up the base URL for all scenarios, we recomend that use `GenericDriver` on `@BeforeClass` like below.
 
 ```java
 GenericDriver.getApplicationContext().setServerUrl("http://localhost:8080/")
+```
+This makes the Navigate Step more semantic.
+```
+Then I navigate to "user/create/"
+```
+
+If not, you can set up the full url on step.
+```
+Then I navigate to "http://localhost:8080/user/create/"
 ```
 
 ## Steps
@@ -82,19 +91,15 @@ This section contains a list with all predefined steps.
 ```cucumber
 #language: en
 
-@it 
-Feature: Create Report
-  First, we need to create a new Template and choose it on Portlet Preferences.
-  
-Scenario: Create a new report without clauses
-  Given user "test@liferay.com" is logged in liferay
-    Then I navigate to "web/guest/home"
-    Then element having id "filter-report-name" should be present
-    When I click on link having text "New"
-    Then I enter "New Report" into input field having xpath "//*[contains(@id, '_report-name')]"
-    When I click on element having id "report-save"
-    Then element having class "notification--success" should have text as "Report successfully saved"
-    Then logout in liferay
+@it
+Feature: Search on Google
+
+  Scenario: Search Zucchini by Entelgy Brazil
+    Then I navigate to "https://www.google.com.br/"
+    Then I enter "Entelgy Zucchini" into input field having name "q"
+    Then I click on element having name "btnG"
+    Then I wait "10" seconds an element having class "rc" to be clickable
+    Then I expect to see "entelgy-brasil/zucchini" on page
 ```
 
 ## Troubleshooting
