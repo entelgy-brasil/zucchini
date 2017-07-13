@@ -27,7 +27,7 @@ Zucchini (zo͞oˈkēnē), a.k.a Abobrinha, is a testing tool based on [Cucumber]
 	},
 	monochrome = false,
 	features = { "src/test/resources/features/" },
-	glue = { "your.awesome.package" },
+	glue = { "br.com.entelgy","your.awesome.package.with.custom.steps" },
 	tags = { "@setup,@it" }
 )
 public class ZucchiniFeaturesRunner {
